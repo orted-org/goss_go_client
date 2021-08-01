@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -33,9 +32,9 @@ const (
 )
 
 type ConnectionConfig struct {
-	Host  string
-	Port  int
-	Https bool
+	Host  string `json:"host"`
+	Port  int    `json:"port"`
+	Https bool   `json:"https"`
 }
 
 type SessionData struct {
@@ -56,7 +55,6 @@ func (connect *ConnectionConfig) CreateSession(session string, ttl int) (string,
 	}
 	// struct to json
 	sessionJson, err := json.Marshal(sessionData)
-	fmt.Print(string(sessionJson))
 	if err != nil {
 		return "", errors.New("invalid data for session")
 	}
