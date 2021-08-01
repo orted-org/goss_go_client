@@ -14,13 +14,13 @@ import (
 func (connect *ConnectionConfig) GenerateEndpoint(target string) string {
 	var sb strings.Builder
 
-	if connect.https {
+	if connect.Https {
 		sb.WriteString("https://")
 	} else {
 		sb.WriteString("http://")
 	}
-	sb.WriteString(connect.host + ":")
-	sb.WriteString(strconv.Itoa(connect.port))
+	sb.WriteString(connect.Host + ":")
+	sb.WriteString(strconv.Itoa(connect.Port))
 	sb.WriteString(target)
 	return sb.String()
 }
@@ -33,9 +33,9 @@ const (
 )
 
 type ConnectionConfig struct {
-	host  string
-	port  int
-	https bool
+	Host  string
+	Port  int
+	Https bool
 }
 
 type SessionData struct {
